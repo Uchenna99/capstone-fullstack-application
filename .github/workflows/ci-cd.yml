@@ -22,7 +22,7 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/newapp-backend:${{ github.sha }}
+          tags: urchmanny0@gmail.com/newapp-backend:${{ github.sha }}
 
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
@@ -30,7 +30,7 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/newapp-frontend:${{ github.sha }}
+          tags: urchmanny0@gmail.com/newapp-frontend:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
