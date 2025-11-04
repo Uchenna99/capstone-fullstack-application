@@ -25,7 +25,7 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/newapp-backend:${{ github.sha }}
+          tags: uchenna99/newapp-backend:${{ github.sha }}
 
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
@@ -33,7 +33,7 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/newapp-frontend:${{ github.sha }}
+          tags: uchenna99/newapp-frontend:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,8 +45,8 @@ jobs:
         run: |
           sed -i '/^    build: .\/backend$/d' docker-compose.yml
           sed -i '/^    build: .\/frontend$/d' docker-compose.yml
-          sed -i '/^  backend:/a\    image: ${{ secrets.DOCKERHUB_USERNAME }}/newapp-backend:${{ github.sha }}' docker-compose.yml
-          sed -i '/^  frontend:/a\    image: ${{ secrets.DOCKERHUB_USERNAME }}/newapp-frontend:${{ github.sha }}' docker-compose.yml
+          sed -i '/^  backend:/a\    image: uchenna99/newapp-backend:${{ github.sha }}' docker-compose.yml
+          sed -i '/^  frontend:/a\    image: uchenna99/newapp-frontend:${{ github.sha }}' docker-compose.yml
 
       - name: Copy modified docker-compose.yml to server
         uses: appleboy/scp-action@v0.1.4
